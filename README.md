@@ -1,6 +1,6 @@
 # todo-gnode
 
-Task description
+## Task description
 
     The task is to implement a small todo list web application. The
     application should display a list of todo items, each with a name
@@ -14,3 +14,24 @@ Task description
     if one key aspect of the app would be somehow special (use an unusual
     language, design a beautiful UI, implement a REST API or a nice
     persistence layer, ...).
+
+
+## Technical stuff
+
+### Database
+
+Database is in Mongodb. Documents have the following structure:
+
+```
+{
+  used_id: string,
+  content: string,
+  date_due: date (optional),
+  priority: int,
+  done: boolean
+}
+```
+
+### Web framework
+
+Tordado (Python)
