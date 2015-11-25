@@ -24,7 +24,7 @@ Database is in Mongodb. Documents have the following structure:
 
 ```
 {
-  used_id: string,
+  user_id: string,
   content: string,
   date_due: date (optional),
   priority: int,
