@@ -8,8 +8,8 @@
         | <a href=/action/delete/{{ escape(item.idstr()) }}>&#9746;</a></li>
     {% end %}
 </ul>
-<form action="/list" method="post" class="input-list style-4 clearfix">
-    <input type="text" placeholder="Create new item" name="description">
-    <input type="submit" value="Add">
+<form action="/list" method="post" class="inputbox clearfix">
+    <input type="text" placeholder="Add new item" name="description">
+    <button type="submit" value="Add">&#43;</button>
 </form>
 {% end %}

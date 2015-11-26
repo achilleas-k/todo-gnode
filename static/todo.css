@@ -38,11 +38,12 @@ li a {
 }
 
 li:hover {
-  font-size: 20px;
-  background: #f6f6f6;
+  font-size: 16px;
+  background: #bbbbbb;
 }
 
-.style-4 input[type="text"] {
+.inputbox input[type="text"] {
+    width: 230px;
   padding: 10px;
   border: none;
   border-bottom: solid 2px #c9c9c9;
@@ -51,6 +52,26 @@ li:hover {
   -o-transition: border 0.3s;
   transition: border 0.3s;
 }
-.style-4 input[type="text"]:focus, .style-4 input[type="text"].focus {
+.inputbox input[type="text"]:focus, .listitem input[type="text"].focus {
   border-bottom: solid 2px #969696;
+}
+
+.inputbox button {
+  color: #fff;
+  background-color: #8c8c8c;
+  text-shadow: -1px 1px #909090;
+  border: none;
+  padding: 10px
+}
+
+.inputbox button:hover,
+.inputbox button.hover {
+  background-color: #444444;
+  text-shadow: -1px 1px #27496d;
+}
+
+.inputbox button:active,
+.inputbox button.active {
+  background-color: #000000;
+  text-shadow: -1px 1px #000000;
 }
