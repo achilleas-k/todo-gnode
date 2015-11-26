@@ -67,8 +67,8 @@ class ActionHandler(BaseHandler):
 
         if action == "delete":
             self.delete(taskitem)
-        elif action == "toggle":
-            self.toggle(taskitem)
+        elif action == "toggledone":
+            self.toggledone(taskitem)
 
     def delete(self, taskitem):
         if taskitem:
