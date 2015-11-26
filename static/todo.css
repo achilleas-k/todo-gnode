@@ -66,7 +66,7 @@ div {
 }
 
 .itemlist td {
-    white-space: nowrap;
+    white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     border-bottom: 1px solid #ccc;
@@ -77,7 +77,10 @@ div {
     width: 100px;
 }
 .itemdescription {
-    width: 75%;
+    width: 60%;
+}
+.datetime {
+    width: 50px;
 }
 .donebutton {
     width: 20px;
@@ -166,6 +169,6 @@ input.inputname {
     width: 120px;
 }
 
-.inputboxdesc {
-    width: 72%;
+.inputdesc {
+    width: 50%;
 }

@@ -5,14 +5,9 @@
     <tbody>
         {% for item in items %}
         <tr class="todoitem">
-            {% if item.done %}
-            <!--- this could probably be simplified -->
-            <td class="itemname todoitemdone"><strike>{{ item.taskname }}</strike></td>
-            <td class="itemdescription todoitemdone"><strike>{{ item.description }}</strike></td>
-            {% else %}
             <td class="itemname">{{ item.taskname}}</td>
             <td class="itemdescription ">{{ item.description }}</td>
-            {% end %}
+            <td class-"datetime">{{ item.datetime_due }}</td>
             <td class="donebutton"><a href=/action/toggledone/{{ escape(item.idstr()) }}>{% if item.done %}&#9745;{% else %}&#9744;{% end %}</a></td>
             <td class="delbutton"><a href=/action/delete/{{ escape(item.idstr()) }}>&#9746;</a></td>
             {% end %}
@@ -21,7 +16,8 @@
 </table>
 <form action="/new" method="post" class="inputbox">
     <input class="inputname" type="text" placeholder="New item name" name="taskname" autofocus />
-    <input class="inputboxdesc" type="text" placeholder="New item description" name="description" />
+    <input class="inputdesc" type="text" placeholder="New item description" name="description" />
+    <input class="inputdatetime" type="text" placeholder="Due date/time" name="datetime" />
     <button type="submit" value="Add">&#43;</button>
 </form>
 {% end %}

@@ -7,7 +7,7 @@ from bson.objectid import ObjectId
 
 class TaskItem(object):
     def __init__(self, _id=None, user_id=None, taskname=None,
-                 description=None, date_due=None, priority=-1, done=False):
+                 description=None, datetime_due=None, priority=-1, done=False):
         if _id is None:
             self._id = ObjectId()
         else:
@@ -15,7 +15,7 @@ class TaskItem(object):
         self.user_id = user_id
         self.taskname = taskname
         self.description = description
-        self.date_due = date_due
+        self.datetime_due = datetime_due
         self.priority = priority
         self.done = done
 

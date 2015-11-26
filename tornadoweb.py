@@ -5,6 +5,9 @@ import tornado.web
 from dbmanager import DatabaseManager
 from taskitem import TaskItem
 from bson.objectid import ObjectId
+import parsedatetime as dtparser
+from datetime import datetime
+from time import mktime
 
 
 class Application(tornado.web.Application):
@@ -74,11 +77,13 @@ class ActionHandler(BaseHandler):
 class NewItemHandler(BaseHandler):
     def post(self):
         user_id = self.get_secure_cookie("user")
-        taskname = self.get_argument("taskname", None)
-        description = self.get_argument("description", None)
+        taskname = self.get_argument("taskname", "")
+        description = self.get_argument("description", "")
+        date = parse_date(self.get_argument("datetime", ""))
         if taskname.strip():
             newitem = TaskItem(user_id=user_id,
                                taskname=taskname,
+                               datetime_due=date,
                                description=description)
             self.db.create(newitem)
         self.redirect("/list")
@@ -107,6 +112,13 @@ def main():
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(8989)
     tornado.ioloop.IOLoop.instance().start()
+
+def parse_date(dtstring):
+    if dtstring.strip():
+        time_struct, parse_status = dtparser.Calendar().parse(dtstring)
+        return datetime.fromtimestamp(mktime(time_struct))
+    else:
+        return None
 
 
 if __name__ == "__main__":
