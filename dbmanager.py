@@ -1,3 +1,6 @@
+"""
+Basic CRUD operations for MongoDB with collection name `todo`.
+"""
 from pymongo import MongoClient
 
 
