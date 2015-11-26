@@ -64,7 +64,7 @@ class DeleteHandler(BaseHandler):
         if taskitem.user_id != user_id:
             return  # TODO: raise error
         if taskitem:
-            print(taskitem.document())
+            # print(taskitem.document())
             self.db.delete(taskitem)
         self.redirect("/list")
 
