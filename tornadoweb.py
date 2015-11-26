@@ -67,8 +67,8 @@ class ActionHandler(BaseHandler):
 
         if action == "delete":
             self.delete(taskitem)
-        elif action == "markdone":
-            self.markdone(taskitem)
+        elif action == "toggle":
+            self.toggle(taskitem)
 
     def delete(self, taskitem):
         if taskitem:
@@ -76,7 +76,7 @@ class ActionHandler(BaseHandler):
             self.db.delete(taskitem)
         self.redirect("/list")
 
-    def markdone(self, taskitem):
+    def toggledone(self, taskitem):
         taskitem.done ^= True
         self.db.update(taskitem)
         self.redirect("/list")
