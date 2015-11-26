@@ -31,7 +31,7 @@ def delete():
     print("Item deleted")
     assert len(db.read(taskid)) == 0, "Item remains after deletion"
 
-if __name__=="__main__":
+if __name__ == "__main__":
     create()
     update()
     delete()
