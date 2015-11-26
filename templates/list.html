@@ -16,8 +16,9 @@
         </tr>
     </tbody>
 </table>
-<form action="/new" method="post" class="inputbox clearfix">
-    <input type="text" placeholder="Add new item" name="description" autofocus />
+<form action="/new" method="post" class="inputbox">
+    <input class="inputname" type="text" placeholder="New item name" name="itemname" autofocus />
+    <input class="inputboxdesc" type="text" placeholder="New item description" name="description" />
     <button type="submit" value="Add">&#43;</button>
 </form>
 {% end %}
