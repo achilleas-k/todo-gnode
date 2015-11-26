@@ -85,20 +85,13 @@ class ActionHandler(BaseHandler):
 class WelcomeHandler(BaseHandler):
     def get(self):
         if not self.current_user:
-            self.write('<html><body>Welcome! Please <a href="/login">login</a>'
-                       '</body></html>')
-            return
-        name = tornado.escape.xhtml_escape(self.current_user)
-        self.write('<html><body>Welcome {name}!<br>'
-                   'Go to <a href=/list>todo list</a>'
-                   '</body></html>'.format(name=name))
+            self.redirect("/login")
+        else:
+            self.redirect("/list")
 
 class LoginHandler(BaseHandler):
     def get(self):
-        self.write('<html><body><form action="/login" method="post">'
-                   'Name: <input type="text" name="name">'
-                   '<input type="submit" value="Sign in">'
-                   '</form></body></html>')
+        self.render("login.html")
 
     def post(self):
         self.set_secure_cookie("user", self.get_argument("name"))

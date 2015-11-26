@@ -1,12 +1,17 @@
 <!DOCTYPE html>
+{% try %}
+    {% set name = username %}
+{% except %}
+    {% set name = "" %}
+{% end %}
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{escape(username)}}'s {{ escape(handler.settings["title"]) }}</title>
+        <title>{{ escape(handler.settings["title"]) }}</title>
         <link rel="stylesheet" href="{{ static_url("header-basic.css") }}" type="text/css">
         <link rel="stylesheet" href="{{ static_url("todo.css") }}" type="text/css">
-        <link rel="alternate" href="/feed" type="application/atom+xml" title="{{escape(username)}}'s {{ escape(handler.settings["title"]) }}">
+        <link rel="alternate" href="/feed" type="application/atom+xml" title="{{ escape(handler.settings["title"]) }}">
         {% block head %}{% end %}
     </head>
 
@@ -15,12 +20,15 @@
         <header class="header-basic">
             <div class="header-limiter">
 
-                <h1><a href="/"><span>TODO LIST</span>{{escape(username)}}</a></h1>
+                <h1><a href="/"><span>TODO LIST</span> {{escape(name)}}</a></h1>
 
                 <nav>
-                    <a href="/">Home</a>
+                    {% if name %}
                     <a href="/list">List</a>
-                    <a href="/logout">Sign out</a>
+                        <a href="/logout">Sign out</a>
+                    {% else %}
+                        <a href="/login">Sign in</a>
+                    {% end %}
                 </nav>
             </div>
 
