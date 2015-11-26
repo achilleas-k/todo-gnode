@@ -3,7 +3,9 @@
 {% block body %}
 <ul>
     {% for item in items %}
-    <li>{{ escape(item.description) }} | <a href=/delete/{{ escape(item.idstr()) }}>Delete</a></li>
+    <li>{% if item.done %}<strike>{% end %}{{ escape(item.description) }}{% if item.done %}</strike>{% end %}
+        | <a href=/action/markdone/{{ escape(item.idstr()) }}>Done</a>
+        | <a href=/action/delete/{{ escape(item.idstr()) }}>Delete</a></li>
     {% end %}
 </ul>
 New item:

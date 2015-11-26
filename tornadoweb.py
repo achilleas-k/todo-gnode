@@ -12,7 +12,7 @@ class Application(tornado.web.Application):
         handlers = [(r"/", WelcomeHandler),
                     (r"/login", LoginHandler),
                     (r"/list", ListHandler),
-                    (r"/delete/(\w+)", DeleteHandler),
+                    (r"/action/(\w+)/(\w+)", ActionHandler),
                    ]
         settings = dict(
                     title="TODO LIST",
@@ -55,19 +55,31 @@ class ListHandler(BaseHandler):
         items = self.db.read({"user_id": user_id})
         self.render("list.html", items=items)
 
-class DeleteHandler(BaseHandler):
-    def get(self, task_id):
+class ActionHandler(BaseHandler):
+    def get(self, action, task_id):
+        # make sure the task belongs to the current user
         user_id = self.get_secure_cookie("user")
         if not user_id:
             return  # TODO: raise error
         taskitem = self.db.read_id(ObjectId(task_id))
         if taskitem.user_id != user_id:
             return  # TODO: raise error
+
+        if action == "delete":
+            self.delete(taskitem)
+        elif action == "markdone":
+            self.markdone(taskitem)
+
+    def delete(self, taskitem):
         if taskitem:
             # print(taskitem.document())
             self.db.delete(taskitem)
         self.redirect("/list")
 
+    def markdone(self, taskitem):
+        taskitem.done ^= True
+        self.db.update(taskitem)
+        self.redirect("/list")
 
 class WelcomeHandler(BaseHandler):
     def get(self):
