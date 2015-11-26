@@ -1,7 +1,6 @@
 """
-Basic CRUD operations for MongoDB with collection name `todo`.
-
-`item`s are of type TaskItem
+Basic CRUD operations for MongoDB with collection name todo.
+items are of type TaskItem
 """
 from pymongo import MongoClient
 from taskitem import TaskItem
