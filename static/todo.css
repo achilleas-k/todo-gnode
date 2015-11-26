@@ -1,12 +1,38 @@
 div {
-    width: 500px;
-    margin: 30px;
+    width: 80%;
+    margin: 0 auto;
 }
 
-h2 {
-    font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
+.itemlist {
+    table-layout: fixed;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.itemlist td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid #ccc;
+}
+
+/* Column widths */
+.itemdescription {
+    width: calc(100% - 70px);
+}
+.donebutton {
+    width: 20px;
+}
+.delbutton {
+    width: 20px;
+}
+
+.todoitemdone {
+    background: #c0c0c0;
+}
+.todoitem:hover {
+    font-size: 16px;
+    background: #aaaaaa;
 }
 
 ul {
@@ -16,7 +42,7 @@ ul {
 }
 
 li {
-    font: 500 16px/1.5 Helvetica, Verdana, sans-serif;
+    font: 16px/1.5 Helvetica, Verdana, sans-serif;
     border-bottom: 1px solid #ccc;
 }
 
@@ -24,7 +50,7 @@ li:last-child {
     border: none;
 }
 
-li a {
+td a {
     text-decoration: none;
     color: #000;
 
@@ -33,19 +59,10 @@ li a {
     -o-transition: font-size 0.3s ease, background-color 0.3s ease;
     -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
     transition: font-size 0.3s ease, background-color 0.3s ease;
-    width: 200px;
-}
-
-li.todoitemdone {
-    background: #c0c0c0;
-}
-li.todoitem:hover {
-    font-size: 16px;
-    background: #aaaaaa;
 }
 
 .inputbox input[type="text"] {
-    width: 370px;
+    width: calc(100% - 70px);
     padding: 10px;
     border: none;
     border-bottom: solid 2px #c9c9c9;
@@ -63,7 +80,8 @@ li.todoitem:hover {
     background-color: #8c8c8c;
     text-shadow: -1px 1px #909090;
     border: none;
-    padding: 10px
+    width: 40px;
+    height: 40px;
 }
 
 .inputbox button:hover,

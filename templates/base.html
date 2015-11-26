@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>{{ escape(handler.settings["title"]) }}</title>
-    <link rel="stylesheet" href="{{ static_url("todo.css") }}" type="text/css">
-    <link rel="alternate" href="/feed" type="application/atom+xml" title="{{ escape(handler.settings["title"]) }}">
-    {% block head %}{% end %}
-  </head>
-  <body>
-    <div id="body">
-      <div id="header">
-        <div style="float:right">
-          {% if current_user %}
-            <a href="/logout">{{ _("Sign out") }}</a>
-          {% else %}
-            {% raw _('<a href="%(url)s">Sign in</a> to compose/edit') % {"url": "/login?next=" + url_escape(request.uri)} %}
-          {% end %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{{escape(username)}}'s {{ escape(handler.settings["title"]) }}</title>
+        <link rel="stylesheet" href="{{ static_url("header-basic.css") }}" type="text/css">
+        <link rel="stylesheet" href="{{ static_url("todo.css") }}" type="text/css">
+        <link rel="alternate" href="/feed" type="application/atom+xml" title="{{escape(username)}}'s {{ escape(handler.settings["title"]) }}">
+        {% block head %}{% end %}
+    </head>
+
+
+    <body>
+        <header class="header-basic">
+            <div class="header-limiter">
+
+                <h1><a href="/"><span>TODO LIST</span>{{escape(username)}}</a></h1>
+
+                <nav>
+                    <a href="/">Home</a>
+                    <a href="/list">List</a>
+                    <a href="/logout">Sign out</a>
+                </nav>
+            </div>
+
+        </header>
+
+
+        <div id="body" style="margin-top: 60px;">
+            <div id="content">{% block body %}{% end %}</div>
         </div>
-        <h1><a href="/">{{ escape(handler.settings["title"]) }}</a></h1>
-      </div>
-      <div id="content">{% block body %}{% end %}</div>
-    </div>
-    {% block bottom %}{% end %}
-  </body>
+        {% block bottom %}{% end %}
+    </body>
 </html>

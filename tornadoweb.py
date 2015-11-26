@@ -54,7 +54,7 @@ class ListHandler(BaseHandler):
     def render_list(self):
         user_id = self.get_secure_cookie("user")
         items = self.db.read({"user_id": user_id})
-        self.render("list.html", items=items)
+        self.render("list.html", username=user_id, items=items)
 
 class ActionHandler(BaseHandler):
     def get(self, action, task_id):
