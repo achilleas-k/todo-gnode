@@ -73,20 +73,23 @@ div {
 }
 
 /* Column widths */
+.itemname {
+    width: 100px;
+}
 .itemdescription {
-    width: calc(100% - 70px);
+    width: 75%;
 }
 .donebutton {
     width: 20px;
     font-size: 25px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 .delbutton {
     width: 20px;
     font-size: 25px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .todoitemdone {
@@ -124,7 +127,7 @@ td a {
 }
 
 .inputbox input[type="text"] {
-    width: calc(100% - 70px);
+    /* width: calc(100% - 70px); */
     padding: 10px;
     border: none;
     border-bottom: solid 2px #c9c9c9;
@@ -140,9 +143,10 @@ td a {
 .inputbox button {
     color: #fff;
     background-color: #8c8c8c;
-    text-shadow: -1px 1px #909090;
+    padding: none;
+    font-size: 30px;
     border: none;
-    width: 40px;
+    width: 80px;
     height: 40px;
 }
 
@@ -156,4 +160,12 @@ td a {
 .inputbox button.active {
     background-color: #000000;
     text-shadow: -1px 1px #000000;
+}
+
+input.inputname {
+    width: 120px;
+}
+
+.inputboxdesc {
+    width: 72%;
 }
