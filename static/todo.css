@@ -1,5 +1,5 @@
 div {
-    width: 300px;
+    width: 500px;
     margin: 30px;
 }
 
@@ -33,17 +33,19 @@ li a {
     -o-transition: font-size 0.3s ease, background-color 0.3s ease;
     -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
     transition: font-size 0.3s ease, background-color 0.3s ease;
-    /* display: block; */
     width: 200px;
 }
 
-li:hover {
+li.todoitemdone {
+    background: #c0c0c0;
+}
+li.todoitem:hover {
     font-size: 16px;
-    background: #bbbbbb;
+    background: #aaaaaa;
 }
 
 .inputbox input[type="text"] {
-    width: 230px;
+    width: 370px;
     padding: 10px;
     border: none;
     border-bottom: solid 2px #c9c9c9;

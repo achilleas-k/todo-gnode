@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 
 {% block body %}
-<ul>
+<ul style="width:80%; float:left">
     {% for item in items %}
-    <li>{% if item.done %}<strike>{% end %}{{ escape(item.description) }}{% if item.done %}</strike>{% end %}
-        | <a href=/action/toggledone/{{ escape(item.idstr()) }}>{% if item.done %}&#9745;{% else %}&#9744;{% end %}</a>
-        | <a href=/action/delete/{{ escape(item.idstr()) }}>&#9746;</a></li>
+        {% if item.done %}
+            <li class="todoitem todoitemdone"><strike>{{ escape(item.description) }}</strike></li>
+        {% else %}
+            <li class="todoitem">{{ escape(item.description) }}</li>
+        {% end %}
+    {% end %}
+</ul>
+<ul style="width:35px; float:left">
+    {% for item in items %}
+    <li><a href=/action/toggledone/{{ escape(item.idstr()) }}>{% if item.done %}&#9745;{% else %}&#9744;{% end %}</a>
+        <a href=/action/delete/{{ escape(item.idstr()) }}>&#9746;</a></li>
     {% end %}
 </ul>
 <form action="/list" method="post" class="inputbox clearfix">
