@@ -23,3 +23,9 @@ class TaskItem(object):
         Return dictionary representation of this TaskItem.
         """
         return self.__dict__
+
+    def idstr(self):
+        """
+        Return a string representation of the TaskItem ID for use in templates.
+        """
+        return str(self._id)
