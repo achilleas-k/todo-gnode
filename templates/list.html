@@ -4,13 +4,12 @@
 <ul>
     {% for item in items %}
     <li>{% if item.done %}<strike>{% end %}{{ escape(item.description) }}{% if item.done %}</strike>{% end %}
-        | <a href=/action/toggledone/{{ escape(item.idstr()) }}>Done</a>
-        | <a href=/action/delete/{{ escape(item.idstr()) }}>Delete</a></li>
+        | <a href=/action/toggledone/{{ escape(item.idstr()) }}>{% if item.done %}&#9745;{% else %}&#9744;{% end %}</a>
+        | <a href=/action/delete/{{ escape(item.idstr()) }}>&#9746;</a></li>
     {% end %}
 </ul>
-New item:
-<form action="/list" method="post">
-    <input type="text" name="description">
+<form action="/list" method="post" class="input-list style-4 clearfix">
+    <input type="text" placeholder="Create new item" name="description">
     <input type="submit" value="Add">
 </form>
 {% end %}
