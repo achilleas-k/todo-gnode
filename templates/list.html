@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+<ul>
+    {% for item in items %}
+    <li>{{ escape(item.description) }} | <a href=/delete/{{ escape(item.idstr()) }}>Delete</a></li>
+    {% end %}
+</ul>
+New item:
+<form action="/list" method="post">
+    <input type="text" name="description">
+    <input type="submit" value="Add">
+</form>
+{% end %}
