@@ -1,5 +1,7 @@
 """
 Basic CRUD operations for MongoDB with collection name `todo`.
+
+`item`s are of type TaskItem
 """
 from pymongo import MongoClient
 
@@ -12,7 +14,7 @@ class DatabaseManager(object):
 
     def create(self, item):
         if item is not None:
-            self.database.todo.insert(item)
+            self.database.todo.insert(item.document())
         else:
             pass  # TODO: raise exception
 
@@ -24,12 +26,12 @@ class DatabaseManager(object):
 
     def update(self, item):
         if item is not None:
-            self.database.todo.save(item)
+            self.database.todo.save(item.document())
         else:
             pass  # TODO: raise exception
 
     def delete(self, item):
         if item is not None:
-            self.database.todo.remove(item)
+            self.database.todo.remove(item.document())
         else:
             pass  # TODO: raise exception
