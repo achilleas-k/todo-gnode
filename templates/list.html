@@ -6,8 +6,11 @@
         {% for item in items %}
         <tr class="todoitem">
             {% if item.done %}
+            <!--- this could probably be simplified -->
+            <td class="itemname todoitemdone"><strike>{{ item.name }}</strike></td>
             <td class="itemdescription todoitemdone"><strike>{{ item.description }}</strike></td>
             {% else %}
+            <td class="itemname">{{ item.name}}</td>
             <td class="itemdescription ">{{ item.description }}</td>
             {% end %}
             <td class="donebutton"><a href=/action/toggledone/{{ escape(item.idstr()) }}>{% if item.done %}&#9745;{% else %}&#9744;{% end %}</a></td>
