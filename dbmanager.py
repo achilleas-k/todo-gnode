@@ -18,14 +18,14 @@ class DatabaseManager(object):
         else:
             pass  # TODO: raise exception
 
-    def readall(self):
-        """Return all items in the database"""
-        cursor = self.database.find()
-        return [TaskItem(**document) for document in cursor]
-
     def read(self, fields):
         """Return items that match arbitrary field values"""
         cursor = self.database.todo.find(fields)
+        return [TaskItem(**document) for document in cursor]
+
+    def read_all(self):
+        """Return all items in the database"""
+        cursor = self.database.todo.find()
         return [TaskItem(**document) for document in cursor]
 
     def read_id(self, item_id):
