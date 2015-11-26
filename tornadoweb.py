@@ -13,6 +13,7 @@ class Application(tornado.web.Application):
                     (r"/login", LoginHandler),
                     (r"/logout", LogoutHandler),
                     (r"/list", ListHandler),
+                    (r"/new", NewItemHandler),
                     (r"/action/(\w+)/(\w+)", ActionHandler),
                    ]
         settings = dict(
@@ -40,18 +41,6 @@ class BaseHandler(tornado.web.RequestHandler):
 
 class ListHandler(BaseHandler):
     def get(self):
-        self.render_list()
-
-    def post(self):
-        user_id = self.get_secure_cookie("user")
-        description = self.get_argument("description", None)
-        if description is None:
-            return
-        newitem = TaskItem(user_id=user_id, description=description)
-        self.db.create(newitem)
-        self.render_list()
-
-    def render_list(self):
         user_id = self.get_secure_cookie("user")
         items = self.db.read({"user_id": user_id})
         self.render("list.html", username=user_id, items=items)
@@ -81,6 +70,17 @@ class ActionHandler(BaseHandler):
         taskitem.done ^= True
         self.db.update(taskitem)
         self.redirect("/list")
+
+class NewItemHandler(BaseHandler):
+    def post(self):
+        user_id = self.get_secure_cookie("user")
+        description = self.get_argument("description", None)
+        if description.strip():
+            newitem = TaskItem(user_id=user_id, description=description)
+            self.db.create(newitem)
+        self.redirect("/list")
+
+
 
 class WelcomeHandler(BaseHandler):
     def get(self):
