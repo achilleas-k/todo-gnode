@@ -18,15 +18,28 @@ class DatabaseManager(object):
         else:
             pass  # TODO: raise exception
 
-    def read(self, item_id=None):
-        if item_id is None:
-            cursor = self.database.todo.find()
+    def readall(self):
+        """Return all items in the database"""
+        cursor = self.database.find()
+        return [TaskItem(**document) for document in cursor]
+
+    def read(self, fields):
+        """Return items that match arbitrary field values"""
+        cursor = self.database.todo.find(fields)
+        return [TaskItem(**document) for document in cursor]
+
+    def read_id(self, item_id):
+        """Return single item that matches the given item_id or None if the
+        item does not exist
+        """
+        results = self.read({"_id": item_id})
+        if len(results) == 1:
+            return results[0]
+        elif len(results) > 1:
+            # this shouldn't happen
+            raise Exception("_id duplicates found in database")
         else:
-            cursor = self.database.todo.find({"_id": item_id})
-        items = []
-        for document in cursor:
-            items.append(TaskItem(**document))
-        return items
+            return None
 
     def update(self, item):
         if item is not None:

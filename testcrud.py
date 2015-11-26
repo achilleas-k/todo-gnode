@@ -16,7 +16,7 @@ def create():
     read()
 
 def read():
-    theitem = db.read(taskid)[0]
+    theitem = db.read_id(taskid)
     print(theitem.document())
     assert theitem.document() == testitem.document(), "Documents do not match"
 
@@ -29,7 +29,7 @@ def update():
 def delete():
     db.delete(testitem)
     print("Item deleted")
-    assert len(db.read(taskid)) == 0, "Item remains after deletion"
+    assert db.read_id(taskid) is None, "Item remains after deletion"
 
 if __name__ == "__main__":
     create()
