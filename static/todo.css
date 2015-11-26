@@ -1,77 +1,77 @@
 div {
-  width: 300px;
-  margin: 30px;
+    width: 300px;
+    margin: 30px;
 }
 
 h2 {
-  font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
-  margin: 0;
-  padding: 0;
+    font: 400 40px/1.5 Helvetica, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 li {
-  font: 500 16px/1.5 Helvetica, Verdana, sans-serif;
-  border-bottom: 1px solid #ccc;
+    font: 500 16px/1.5 Helvetica, Verdana, sans-serif;
+    border-bottom: 1px solid #ccc;
 }
 
 li:last-child {
-  border: none;
+    border: none;
 }
 
 li a {
-  text-decoration: none;
-  color: #000;
+    text-decoration: none;
+    color: #000;
 
-  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
-  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
-  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
-  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
-  transition: font-size 0.3s ease, background-color 0.3s ease;
-  /* display: block; */
-  width: 200px;
+    -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+    -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+    transition: font-size 0.3s ease, background-color 0.3s ease;
+    /* display: block; */
+    width: 200px;
 }
 
 li:hover {
-  font-size: 16px;
-  background: #bbbbbb;
+    font-size: 16px;
+    background: #bbbbbb;
 }
 
 .inputbox input[type="text"] {
     width: 230px;
-  padding: 10px;
-  border: none;
-  border-bottom: solid 2px #c9c9c9;
-  -webkit-transition: border 0.3s;
-  -moz-transition: border 0.3s;
-  -o-transition: border 0.3s;
-  transition: border 0.3s;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    -webkit-transition: border 0.3s;
+    -moz-transition: border 0.3s;
+    -o-transition: border 0.3s;
+    transition: border 0.3s;
 }
 .inputbox input[type="text"]:focus, .listitem input[type="text"].focus {
-  border-bottom: solid 2px #969696;
+    border-bottom: solid 2px #969696;
 }
 
 .inputbox button {
-  color: #fff;
-  background-color: #8c8c8c;
-  text-shadow: -1px 1px #909090;
-  border: none;
-  padding: 10px
+    color: #fff;
+    background-color: #8c8c8c;
+    text-shadow: -1px 1px #909090;
+    border: none;
+    padding: 10px
 }
 
 .inputbox button:hover,
 .inputbox button.hover {
-  background-color: #444444;
-  text-shadow: -1px 1px #27496d;
+    background-color: #444444;
+    text-shadow: -1px 1px #27496d;
 }
 
 .inputbox button:active,
 .inputbox button.active {
-  background-color: #000000;
-  text-shadow: -1px 1px #000000;
+    background-color: #000000;
+    text-shadow: -1px 1px #000000;
 }
