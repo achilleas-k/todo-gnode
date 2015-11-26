@@ -13,7 +13,7 @@ class TaskItem(object):
         else:
             self._id = _id
         self.user_id = user_id
-        self.taskname = taskname,
+        self.taskname = taskname
         self.description = description
         self.date_due = date_due
         self.priority = priority

@@ -74,13 +74,14 @@ class ActionHandler(BaseHandler):
 class NewItemHandler(BaseHandler):
     def post(self):
         user_id = self.get_secure_cookie("user")
+        taskname = self.get_argument("taskname", None)
         description = self.get_argument("description", None)
-        if description.strip():
-            newitem = TaskItem(user_id=user_id, description=description)
+        if taskname.strip():
+            newitem = TaskItem(user_id=user_id,
+                               taskname=taskname,
+                               description=description)
             self.db.create(newitem)
         self.redirect("/list")
-
-
 
 class WelcomeHandler(BaseHandler):
     def get(self):
