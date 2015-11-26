@@ -11,6 +11,7 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [(r"/", WelcomeHandler),
                     (r"/login", LoginHandler),
+                    (r"/logout", LogoutHandler),
                     (r"/list", ListHandler),
                     (r"/action/(\w+)/(\w+)", ActionHandler),
                    ]
@@ -102,6 +103,11 @@ class LoginHandler(BaseHandler):
     def post(self):
         self.set_secure_cookie("user", self.get_argument("name"))
         self.redirect("/")
+
+class LogoutHandler(BaseHandler):
+    def get(self):
+        self.clear_cookie("user")
+        self.redirect(self.get_argument("next", "/"))
 
 def main():
     http_server = tornado.httpserver.HTTPServer(Application())
