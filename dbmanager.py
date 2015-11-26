@@ -4,6 +4,7 @@ Basic CRUD operations for MongoDB with collection name `todo`.
 `item`s are of type TaskItem
 """
 from pymongo import MongoClient
+from taskitem import TaskItem
 
 
 class DatabaseManager(object):
@@ -20,9 +21,13 @@ class DatabaseManager(object):
 
     def read(self, item_id=None):
         if item_id is None:
-            return self.database.todo.find()
+            cursor = self.database.todo.find()
         else:
-            return self.database.todo.find({"_id": item_id})
+            cursor = self.database.todo.find({"_id": item_id})
+        items = []
+        for document in cursor:
+            items.append(TaskItem(**document))
+        return items
 
     def update(self, item):
         if item is not None:
