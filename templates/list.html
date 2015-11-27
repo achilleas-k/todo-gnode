@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 
 {% block body %}
+<script>
+function Validate(){
+    // checks if the task has a name (the only required field)
+    var taskname = document.getElementById('taskname').value.trim();
+    if (taskname == "") {
+        document.getElementById('taskname').style.borderColor = "red";
+        return false;
+    }
+}
+</script>
 <table class="itemlist">
     <tbody>
         {% for item in items %}
@@ -20,10 +30,11 @@
         </tr>
     </tbody>
 </table>
-<form action="/new" method="post" class="inputbox">
-    <input class="inputname" type="text" placeholder="New item name" name="taskname" autofocus />
+<form action="/new" method="post" onsubmit="return Validate();" onchange="return Validate();" class="inputbox">
+    <input class="inputname" type="text" placeholder="New item name" id="taskname" name="taskname" autofocus />
     <input class="inputdesc" type="text" placeholder="New item description" name="description" />
     <input class="inputdatetime" type="text" placeholder="Due date/time" name="datetime" />
     <button type="submit" value="Add">&#43;</button>
 </form>
+
 {% end %}

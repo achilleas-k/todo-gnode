@@ -69,6 +69,7 @@ div {
     white-space: normal;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 5px;
     border-bottom: 1px solid #ccc;
 }
 
@@ -80,27 +81,28 @@ div {
     width: 60%;
 }
 .datetime {
-    width: 50px;
+    width: 1000px;
 }
-.donebutton {
+td.donebutton {
     width: 20px;
     font-size: 25px;
-    padding-left: 5px;
-    padding-right: 5px;
+    /* padding-left: 5px; */
+    /* padding-right: 5px; */
 }
-.delbutton {
+td.delbutton {
     width: 20px;
     font-size: 25px;
-    padding-left: 5px;
-    padding-right: 5px;
+    /* padding-left: 5px; */
+    /* padding-right: 5px; */
+}
+
+.todoitem:hover {
+    font-size: 16px;
+    background: #aaaaaa;
 }
 
 .todoitemdone {
     background: #c0c0c0;
-}
-.todoitem:hover {
-    font-size: 16px;
-    background: #aaaaaa;
 }
 
 .todoitemdue {
