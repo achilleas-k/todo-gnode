@@ -119,7 +119,7 @@ def parse_date(dtstring):
         time_struct, parse_status = dtparser.Calendar().parse(dtstring)
         return datetime.fromtimestamp(mktime(time_struct))
     else:
-        return None
+        return ""
 
 def due_today(task_due):
     """Returns true if the task is due today or if it is overdue"""
