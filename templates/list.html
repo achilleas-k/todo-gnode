@@ -11,6 +11,7 @@ function Validate(){
     }
 }
 </script>
+<form action="/new" method="post" onsubmit="return Validate();" onchange="return Validate();" class="inputbox">
 <table class="itemlist">
     <tbody>
         {% for item in items %}
@@ -22,19 +23,20 @@ function Validate(){
             <tr class="todoitem">
         {% end %}
             <td class="itemname">{{ item.taskname}}</td>
-            <td class="itemdescription ">{{ item.description }}</td>
-            <td class-"datetime">{{ item.datetime_due }}</td>
+            <td class="itemdescription">{{ item.description }}</td>
+            <td class="itemdatetime">{{ item.datetime_due }}</td>
             <td class="donebutton"><a href=/action/toggledone/{{ escape(item.idstr()) }}>{% if item.done %}&#9745;{% else %}&#9744;{% end %}</a></td>
             <td class="delbutton"><a href=/action/delete/{{ escape(item.idstr()) }}>&#9746;</a></td>
-            {% end %}
         </tr>
+    {% end %}
+    <tr class="inputrow">
+        <td class="inputcell"><input class="newiteminputfield" type="text" placeholder="New item name" id="taskname" name="taskname" autofocus /></td>
+        <td class="inputcell"><input class="newiteminputfield" type="text" placeholder="New item description" name="description" /></td>
+        <td class="inputcell"><input class="newiteminputfield" type="text" placeholder="Due date/time" name="datetime" /></td>
+        <td class="inputcell" colspan="2"><button type="submit" value="Add">&#43;</button></td>
+    </tr>
     </tbody>
 </table>
-<form action="/new" method="post" onsubmit="return Validate();" onchange="return Validate();" class="inputbox">
-    <input class="inputname" type="text" placeholder="New item name" id="taskname" name="taskname" autofocus />
-    <input class="inputdesc" type="text" placeholder="New item description" name="description" />
-    <input class="inputdatetime" type="text" placeholder="Due date/time" name="datetime" />
-    <button type="submit" value="Add">&#43;</button>
 </form>
 
 {% end %}

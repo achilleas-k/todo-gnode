@@ -75,21 +75,21 @@ div {
 
 /* Column widths */
 .itemname {
-    width: 100px;
+    width: 110px;
 }
 .itemdescription {
     width: 60%;
 }
-.datetime {
-    width: 1000px;
+.itemdatetime {
+    width: 200px;
 }
-td.donebutton {
+.donebutton {
     width: 20px;
     font-size: 25px;
     /* padding-left: 5px; */
     /* padding-right: 5px; */
 }
-td.delbutton {
+.delbutton {
     width: 20px;
     font-size: 25px;
     /* padding-left: 5px; */
@@ -109,21 +109,6 @@ td.delbutton {
     background: #FF2D2D
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    font: 16px/1.5 Helvetica, Verdana, sans-serif;
-    border-bottom: 1px solid #ccc;
-}
-
-li:last-child {
-    border: none;
-}
-
 td a {
     text-decoration: none;
     color: #000;
@@ -135,9 +120,11 @@ td a {
     transition: font-size 0.3s ease, background-color 0.3s ease;
 }
 
+
+/* Input fields */
 .inputbox input[type="text"] {
     /* width: calc(100% - 70px); */
-    padding: 10px;
+    /* padding: 10px; */
     border: none;
     border-bottom: solid 2px #c9c9c9;
     -webkit-transition: border 0.3s;
@@ -155,7 +142,7 @@ td a {
     padding: none;
     font-size: 30px;
     border: none;
-    width: 80px;
+    width: 50px;
     height: 40px;
 }
 
@@ -171,10 +158,10 @@ td a {
     text-shadow: -1px 1px #000000;
 }
 
-input.inputname {
-    width: 120px;
+td.inputcell {
+    border-bottom: none;
 }
 
-.inputdesc {
-    width: 50%;
+.newiteminputfield {
+    width: 100%;
 }
