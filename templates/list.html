@@ -6,6 +6,8 @@
         {% for item in items %}
         {% if item.done %}
             <tr class="todoitem todoitemdone">
+        {% elif due_today(item.datetime_due) %}
+            <tr class="todoitem todoitemdue">
         {% else %}
             <tr class="todoitem">
         {% end %}

@@ -103,6 +103,10 @@ div {
     background: #aaaaaa;
 }
 
+.todoitemdue {
+    background: #FF2D2D
+}
+
 ul {
     list-style-type: none;
     margin: 0;
