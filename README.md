@@ -14,24 +14,3 @@
     if one key aspect of the app would be somehow special (use an unusual
     language, design a beautiful UI, implement a REST API or a nice
     persistence layer, ...).
-
-
-## Technical stuff
-
-### Database
-
-Database is in Mongodb. Documents have the following structure:
-
-```
-{
-  user_id: string,
-  description: string,
-  date_due: date (optional),
-  priority: int,
-  done: boolean
-}
-```
-
-### Web framework
-
-Tordado (Python)
