@@ -4,7 +4,11 @@
 <table class="itemlist">
     <tbody>
         {% for item in items %}
-        <tr class="todoitem">
+        {% if item.done %}
+            <tr class="todoitem todoitemdone">
+        {% else %}
+            <tr class="todoitem">
+        {% end %}
             <td class="itemname">{{ item.taskname}}</td>
             <td class="itemdescription ">{{ item.description }}</td>
             <td class-"datetime">{{ item.datetime_due }}</td>
