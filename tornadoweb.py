@@ -124,7 +124,7 @@ def parse_date(dtstring):
 def due_today(task_due):
     """Returns true if the task is due today or if it is overdue"""
     if task_due:
-        return (task_due - parse_date("now")).days <= 0
+        return (task_due - parse_date("now")).days < 0
     else:
         return False
 
