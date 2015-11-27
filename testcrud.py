@@ -35,3 +35,5 @@ if __name__ == "__main__":
     create()
     update()
     delete()
+    for item in db.read_all():
+        print(item.document())
