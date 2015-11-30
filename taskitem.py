@@ -8,10 +8,7 @@ from utils import parse_date
 class TaskItem(object):
     def __init__(self, _id=None, user_id=None, taskname=None,
                  description=None, datetime_due=None, priority=-1, done=False):
-        if _id is None:
-            self._id = ObjectId()
-        else:
-            self._id = _id
+        self._id = _id or ObjectId()
         self.user_id = user_id
         self.taskname = taskname
         self.description = description
