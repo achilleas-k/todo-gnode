@@ -50,6 +50,8 @@ class BaseHandler(tornado.web.RequestHandler):
 class ListHandler(BaseHandler):
     def get(self):
         user_id = self.get_secure_cookie("user")
+        if not user_id:
+            self.redirect("/")
         items = self.db.read({"user_id": user_id})
         self.render("list.html", username=user_id, items=items)
 
