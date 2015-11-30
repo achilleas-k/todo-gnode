@@ -1,35 +1,39 @@
+#!/usr/bin/env python
+from __future__ import print_function
+
 import os
+import sys
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
 from dbmanager import DatabaseManager
 from taskitem import TaskItem
 from bson.objectid import ObjectId
-import parsedatetime as dtparser
-from datetime import datetime
-from time import mktime
+from utils import parse_date
 
 
 class Application(tornado.web.Application):
     def __init__(self):
-        handlers = [(r"/", WelcomeHandler),
-                    (r"/login", LoginHandler),
-                    (r"/logout", LogoutHandler),
-                    (r"/list", ListHandler),
-                    (r"/new", NewItemHandler),
+
+        handlers = [(u"/", WelcomeHandler),
+                    (u"/login", LoginHandler),
+                    (u"/logout", LogoutHandler),
+                    (u"/list", ListHandler),
+                    (u"/new", NewItemHandler),
                     (r"/action/(\w+)/(\w+)", ActionHandler),
                    ]
-        settings = dict(
-                    title="TODO LIST",
-                    cookie_secret="SOME_RANDOM_VALUE",
-                    template_path=os.path.join(os.path.dirname(__file__),
+        settings = {"title": "TODO LIST",
+                    "cookie_secret": "SOME_RANDOM_VALUE", # TODO: yeah, todo!
+                    "template_path": os.path.join(os.path.dirname(__file__),
                                                  "templates"),
-                    static_path=os.path.join(os.path.dirname(__file__),
+                    "static_path": os.path.join(os.path.dirname(__file__),
                                              "static"),
-                    autoreload=True,
-                    debug=True)
+                    "autoreload": True,
+                    "debug": True}
+
         super(Application, self).__init__(handlers, **settings)
         self.db = DatabaseManager()
+
 
 class BaseHandler(tornado.web.RequestHandler):
     @property
@@ -42,12 +46,13 @@ class BaseHandler(tornado.web.RequestHandler):
             return None
         return user_id
 
+
 class ListHandler(BaseHandler):
     def get(self):
         user_id = self.get_secure_cookie("user")
         items = self.db.read({"user_id": user_id})
-        self.render("list.html", username=user_id, items=items,
-                    due_today=due_today)
+        self.render("list.html", username=user_id, items=items)
+
 
 class ActionHandler(BaseHandler):
     def get(self, action, task_id):
@@ -75,6 +80,7 @@ class ActionHandler(BaseHandler):
         self.db.update(taskitem)
         self.redirect("/list")
 
+
 class NewItemHandler(BaseHandler):
     def post(self):
         user_id = self.get_secure_cookie("user")
@@ -89,12 +95,14 @@ class NewItemHandler(BaseHandler):
             self.db.create(newitem)
         self.redirect("/list")
 
+
 class WelcomeHandler(BaseHandler):
     def get(self):
         if not self.current_user:
             self.redirect("/login")
         else:
             self.redirect("/list")
+
 
 class LoginHandler(BaseHandler):
     def get(self):
@@ -104,29 +112,19 @@ class LoginHandler(BaseHandler):
         self.set_secure_cookie("user", self.get_argument("name"))
         self.redirect("/")
 
+
 class LogoutHandler(BaseHandler):
     def get(self):
         self.clear_cookie("user")
         self.redirect(self.get_argument("next", "/"))
 
+
 def main():
+    port = 8989
+    print("Listening on port %d" % port, file=sys.stderr)
     http_server = tornado.httpserver.HTTPServer(Application())
-    http_server.listen(8989)
+    http_server.listen(port)
     tornado.ioloop.IOLoop.instance().start()
-
-def parse_date(dtstring):
-    if dtstring.strip():
-        time_struct, parse_status = dtparser.Calendar().parse(dtstring)
-        return datetime.fromtimestamp(mktime(time_struct))
-    else:
-        return ""
-
-def due_today(task_due):
-    """Returns true if the task is due today or if it is overdue"""
-    if task_due:
-        return (task_due - parse_date("now")).days < 0
-    else:
-        return False
 
 
 if __name__ == "__main__":
