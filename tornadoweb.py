@@ -1,4 +1,7 @@
+from __future__ import print_function
+
 import os
+import sys
 import tornado.httpserver
 import tornado.ioloop
 import tornado.web
@@ -108,8 +111,10 @@ class LogoutHandler(BaseHandler):
         self.redirect(self.get_argument("next", "/"))
 
 def main():
+    port = 8989
+    print("Listening on port %d" % port, file=sys.stderr)
     http_server = tornado.httpserver.HTTPServer(Application())
-    http_server.listen(8989)
+    http_server.listen(port)
     tornado.ioloop.IOLoop.instance().start()
 
 
