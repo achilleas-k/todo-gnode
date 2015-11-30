@@ -13,11 +13,12 @@ from utils import parse_date
 
 class Application(tornado.web.Application):
     def __init__(self):
-        handlers = [(r"/", WelcomeHandler),
-                    (r"/login", LoginHandler),
-                    (r"/logout", LogoutHandler),
-                    (r"/list", ListHandler),
-                    (r"/new", NewItemHandler),
+
+        handlers = [(u"/", WelcomeHandler),
+                    (u"/login", LoginHandler),
+                    (u"/logout", LogoutHandler),
+                    (u"/list", ListHandler),
+                    (u"/new", NewItemHandler),
                     (r"/action/(\w+)/(\w+)", ActionHandler),
                    ]
         settings = {"title": "TODO LIST",
