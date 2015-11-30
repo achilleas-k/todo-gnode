@@ -16,6 +16,8 @@ With the database server running and the key set, simply run `tornadoweb.py` to 
 By default, the server runs on port `8989`.
 The port number can be changed in the `main()` method of `tornadoweb.py`.
 
+The application runs with both Python 2.x and 3.x.
+
 ## Dependencies
 
 The application depends on the following python libraries:
