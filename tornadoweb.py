@@ -5,9 +5,7 @@ import tornado.web
 from dbmanager import DatabaseManager
 from taskitem import TaskItem
 from bson.objectid import ObjectId
-import parsedatetime as dtparser
-from datetime import datetime
-from time import mktime
+from utils import parse_date
 
 
 class Application(tornado.web.Application):
@@ -114,12 +112,6 @@ def main():
     http_server.listen(8989)
     tornado.ioloop.IOLoop.instance().start()
 
-def parse_date(dtstring):
-    if dtstring.strip():
-        time_struct, parse_status = dtparser.Calendar().parse(dtstring)
-        return datetime.fromtimestamp(mktime(time_struct))
-    else:
-        return ""
 
 def due_today(task_due):
     """Returns true if the task is due today or if it is overdue"""
