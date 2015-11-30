@@ -58,3 +58,6 @@ target/
 
 # vim swp files
 *.swp
+
+# IDEA
+.idea
