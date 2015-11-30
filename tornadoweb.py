@@ -23,7 +23,7 @@ class Application(tornado.web.Application):
                     (r"/action/(\w+)/(\w+)", ActionHandler),
                    ]
         settings = {"title": "TODO LIST",
-                    "cookie_secret": "SOME_RANDOM_VALUE", # TODO: yeah, todo!
+                    "cookie_secret": open("cookie_secret").read().replace("\n", ""),
                     "template_path": os.path.join(os.path.dirname(__file__),
                                                  "templates"),
                     "static_path": os.path.join(os.path.dirname(__file__),
