@@ -17,15 +17,15 @@ class Application(tornado.web.Application):
                     (r"/new", NewItemHandler),
                     (r"/action/(\w+)/(\w+)", ActionHandler),
                    ]
-        settings = dict(
-                    title="TODO LIST",
-                    cookie_secret="SOME_RANDOM_VALUE",
-                    template_path=os.path.join(os.path.dirname(__file__),
+        settings = {"title": "TODO LIST",
+                    "cookie_secret": "SOME_RANDOM_VALUE", # TODO: yeah, todo!
+                    "template_path": os.path.join(os.path.dirname(__file__),
                                                  "templates"),
-                    static_path=os.path.join(os.path.dirname(__file__),
+                    "static_path": os.path.join(os.path.dirname(__file__),
                                              "static"),
-                    autoreload=True,
-                    debug=True)
+                    "autoreload": True,
+                    "debug": True}
+
         super(Application, self).__init__(handlers, **settings)
         self.db = DatabaseManager()
 
