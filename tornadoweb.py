@@ -48,8 +48,8 @@ class ListHandler(BaseHandler):
     def get(self):
         user_id = self.get_secure_cookie("user")
         items = self.db.read({"user_id": user_id})
-        self.render("list.html", username=user_id, items=items,
-                    due_today=due_today)
+        self.render("list.html", username=user_id, items=items)
+
 
 class ActionHandler(BaseHandler):
     def get(self, action, task_id):
@@ -117,14 +117,6 @@ def main():
     http_server = tornado.httpserver.HTTPServer(Application())
     http_server.listen(port)
     tornado.ioloop.IOLoop.instance().start()
-
-
-def due_today(task_due):
-    """Returns true if the task is due today or if it is overdue"""
-    if task_due:
-        return (task_due - parse_date("now")).days < 0
-    else:
-        return False
 
 
 if __name__ == "__main__":
