@@ -33,6 +33,7 @@ class Application(tornado.web.Application):
         super(Application, self).__init__(handlers, **settings)
         self.db = DatabaseManager()
 
+
 class BaseHandler(tornado.web.RequestHandler):
     @property
     def db(self):
@@ -43,6 +44,7 @@ class BaseHandler(tornado.web.RequestHandler):
         if not user_id:
             return None
         return user_id
+
 
 class ListHandler(BaseHandler):
     def get(self):
@@ -77,6 +79,7 @@ class ActionHandler(BaseHandler):
         self.db.update(taskitem)
         self.redirect("/list")
 
+
 class NewItemHandler(BaseHandler):
     def post(self):
         user_id = self.get_secure_cookie("user")
@@ -91,12 +94,14 @@ class NewItemHandler(BaseHandler):
             self.db.create(newitem)
         self.redirect("/list")
 
+
 class WelcomeHandler(BaseHandler):
     def get(self):
         if not self.current_user:
             self.redirect("/login")
         else:
             self.redirect("/list")
+
 
 class LoginHandler(BaseHandler):
     def get(self):
@@ -106,10 +111,12 @@ class LoginHandler(BaseHandler):
         self.set_secure_cookie("user", self.get_argument("name"))
         self.redirect("/")
 
+
 class LogoutHandler(BaseHandler):
     def get(self):
         self.clear_cookie("user")
         self.redirect(self.get_argument("next", "/"))
+
 
 def main():
     port = 8989
