@@ -23,6 +23,7 @@ class Application(tornado.web.Application):
                     (r"/action/(\w+)/(\w+)", ActionHandler),
                    ]
         settings = {"title": "TODO LIST",
+                    "login_url": "/login",
                     "cookie_secret": open("cookie_secret").read().replace("\n", ""),
                     "template_path": os.path.join(os.path.dirname(__file__),
                                                  "templates"),
@@ -48,15 +49,15 @@ class BaseHandler(tornado.web.RequestHandler):
 
 
 class ListHandler(BaseHandler):
+    @tornado.web.authenticated
     def get(self):
         user_id = self.get_secure_cookie("user")
-        if not user_id:
-            self.redirect("/")
         items = self.db.read({"user_id": user_id})
         self.render("list.html", username=user_id, items=items)
 
 
 class ActionHandler(BaseHandler):
+    @tornado.web.authenticated
     def get(self, action, task_id):
         # make sure the task belongs to the current user
         user_id = self.get_secure_cookie("user")
@@ -84,6 +85,10 @@ class ActionHandler(BaseHandler):
 
 
 class NewItemHandler(BaseHandler):
+    @tornado.web.authenticated
+    def get(self):
+        pass
+
     def post(self):
         user_id = self.get_secure_cookie("user")
         taskname = self.get_argument("taskname", "")
@@ -99,10 +104,8 @@ class NewItemHandler(BaseHandler):
 
 
 class WelcomeHandler(BaseHandler):
+    @tornado.web.authenticated
     def get(self):
-        if not self.current_user:
-            self.redirect("/login")
-        else:
             self.redirect("/list")
 
 
